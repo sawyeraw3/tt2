@@ -1,5 +1,12 @@
 # Tt2
 
+Design Decisions:
+
+Prevented duplicate users with the same email
+Removed unnecessary links and prevented access to corresponding pages when user not signed in/shouldn't have access
+Allowed user to modify its record (navbar shows user name as link to user information)
+All other design choices made to satisfy the assignment requirements (i.e. preventing some view for non-managers and granting access to managers, assigning tasks only to underlings, etc)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
