@@ -1,0 +1,28 @@
+<h1>Underlings' Tasks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Assigned to</th>
+      <th>Completed</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= Enum.map(@tasks, fn task -> %>
+  <tr>
+    <td><%= task.title %></td>
+    <td><%= task.description %></td>
+    <td><%= task.user.email %></td>
+    <td><%= task.completed %></td>
+    <td>
+      <%= link "Edit", to: Routes.task_path(@conn, :edit, task) %>
+    </td>
+  </tr>
+<% end) %>
+  </tbody>
+</table>
+
+<span><%= link "New Task", class: "btn btn-primary", to: Routes.task_path(@conn, :new) %></span>

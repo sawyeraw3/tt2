@@ -1,0 +1,64 @@
+<h1>User</h1>
+
+<ul class="list-group">
+
+  <li class="list-group-item">
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Managers:</strong>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <%= Enum.map(@current_user.managers, fn user -> %>
+          <tr>
+            <td><%=user.name%></td>
+            <td><%=user.email%></td>
+            <td>
+              <%= link "Delete", to: Routes.manager_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %>
+            </td>
+          </tr>
+        <% end) %>
+      </tbody>
+    </table>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Current Underlings:</strong>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= Enum.map(@current_user.underlings, fn user -> %>
+          <tr>
+            <td><%=user.name%></td>
+            <td><%=user.email%></td>
+            <td>
+              <%= link "Delete", to: Routes.manager_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %>
+            </td>
+          </tr>
+        <% end) %>
+      </tbody>
+    </table>
+    <span><%= link "Add Underling", to: Routes.manager_path(@conn, :new), class: "btn btn-primary" %></span>
+  </li>
+</ul>

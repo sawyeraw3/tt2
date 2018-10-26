@@ -1,0 +1,22 @@
+<h1>My Tasks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Completed</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= Enum.map(@current_user.tasks, fn task -> %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.completed %></td>
+        <td><%= link "Edit", to: Routes.task_path(@conn, :edit, task.id) %></td>
+      </tr>
+  <% end) %>
+  </tbody>
+</table>
